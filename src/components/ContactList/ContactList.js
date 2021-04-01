@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 import propTypes from "prop-types";
+import phonebookActions from "../../redux/phonebook-actions";
 import s from "./ContactList.module.css";
 
 const ContactList = ({ contacts, deleteContact }) => (
@@ -20,7 +22,15 @@ const ContactList = ({ contacts, deleteContact }) => (
   </div>
 );
 
-export default ContactList;
+const mapStateToProps = (state) => ({
+  contacts: state.items.contacts,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  deleteContact: (id) => dispatch(phonebookActions.deleteContact(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
 
 ContactList.propTypes = {
   contacts: propTypes.array.isRequired,

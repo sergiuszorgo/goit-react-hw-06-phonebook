@@ -7,25 +7,25 @@ import SearchForm from "./components/SearchForm/SearchForm";
 
 class App extends Component {
   state = {
-    contacts: [],
-    filter: "",
+    // contacts: [],
+    // filter: "",
   };
   // построение из localStorage
-  componentDidMount() {
-    const contacts = localStorage.getItem("contacts");
-    if (contacts) {
-      const parsContacts = JSON.parse(contacts);
-      this.setState({ contacts: parsContacts });
-    } else {
-      return;
-    }
-  }
+  // componentDidMount() {
+  //   const contacts = localStorage.getItem("contacts");
+  //   if (contacts) {
+  //     const parsContacts = JSON.parse(contacts);
+  //     this.setState({ contacts: parsContacts });
+  //   } else {
+  //     return;
+  //   }
+  // }
   //
-  componentDidUpdate(prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-    }
-  }
+  // componentDidUpdate(prevState) {
+  //   if (this.state.contacts !== prevState.contacts) {
+  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  //   }
+  // }
   // проверка на совпадение
   checkContact = (name) => {
     return this.state.contacts.some(
@@ -34,38 +34,38 @@ class App extends Component {
   };
 
   // добавление контакта
-  addContact = ({ name, number }) => {
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-    if (this.checkContact(name)) {
-      alert(`${name} is already in contacts`);
-      return;
-    } else {
-      this.setState(({ contacts }) => ({
-        contacts: [contact, ...contacts],
-      }));
-    }
-  };
+  // addContact = ({ name, number }) => {
+  //   const contact = {
+  //     id: nanoid(),
+  //     name,
+  //     number,
+  //   };
+  //   if (this.checkContact(name)) {
+  //     alert(`${name} is already in contacts`);
+  //     return;
+  //   } else {
+  //     this.setState(({ contacts }) => ({
+  //       contacts: [contact, ...contacts],
+  //     }));
+  //   }
+  // };
 
   // удаление контакта
-  deleteContact = (contactId) => {
-    this.setState((prevState) => ({
-      contacts: prevState.contacts.filter(
-        (contact) => contact.id !== contactId
-      ),
-    }));
-  };
+  // deleteContact = (contactId) => {
+  //   this.setState((prevState) => ({
+  //     contacts: prevState.contacts.filter(
+  //       (contact) => contact.id !== contactId
+  //     ),
+  //   }));
+  // };
 
   // рендер списка
-  renderContacts = () => {
-    const lowerName = this.state.filter.toLowerCase();
-    return this.state.contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(lowerName)
-    );
-  };
+  // renderContacts = () => {
+  //   const lowerName = this.state.filter.toLowerCase();
+  //   return this.state.contacts.filter((contact) =>
+  //     contact.name.toLowerCase().includes(lowerName)
+  //   );
+  // };
 
   // фильтр
   changeFilter = (e) => {
@@ -73,13 +73,14 @@ class App extends Component {
   };
 
   render() {
-    const rendered = this.renderContacts();
+    // const rendered = this.renderContacts();
     return (
       <div className="App">
         <h1>Phonebook</h1>
         <ContactForm addContact={this.addContact} />
-        <SearchForm filter={this.state.filter} inputForm={this.changeFilter} />
-        <ContactList contacts={rendered} deleteContact={this.deleteContact} />
+        {/* <SearchForm filter={this.state.filter} inputForm={this.changeFilter} /> */}
+        <SearchForm />
+        <ContactList />
       </div>
     );
   }
