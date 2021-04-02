@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 import ContactList from "./components/ContactList/ContactList";
 import ContactForm from "./components/ContactForm/ContactForm";
 import SearchForm from "./components/SearchForm/SearchForm";
@@ -33,7 +33,7 @@ class App extends Component {
     );
   };
 
-  // добавление контакта
+  // добавление контакта !~
   // addContact = ({ name, number }) => {
   //   const contact = {
   //     id: nanoid(),
@@ -50,7 +50,7 @@ class App extends Component {
   //   }
   // };
 
-  // удаление контакта
+  // удаление контакта !!
   // deleteContact = (contactId) => {
   //   this.setState((prevState) => ({
   //     contacts: prevState.contacts.filter(
@@ -59,7 +59,7 @@ class App extends Component {
   //   }));
   // };
 
-  // рендер списка
+  // рендер списка !!
   // renderContacts = () => {
   //   const lowerName = this.state.filter.toLowerCase();
   //   return this.state.contacts.filter((contact) =>
@@ -67,10 +67,10 @@ class App extends Component {
   //   );
   // };
 
-  // фильтр
-  changeFilter = (e) => {
-    this.setState({ filter: e.currentTarget.value });
-  };
+  // фильтр !!
+  // changeFilter = (e) => {
+  //   this.setState({ filter: e.currentTarget.value });
+  // };
 
   render() {
     // const rendered = this.renderContacts();
@@ -78,8 +78,8 @@ class App extends Component {
       <div className="App">
         <h1>Phonebook</h1>
         <ContactForm addContact={this.addContact} />
-        {/* <SearchForm filter={this.state.filter} inputForm={this.changeFilter} /> */}
         <SearchForm />
+        {/* <SearchForm filter={this.state.filter} inputForm={this.changeFilter} /> */}
         <ContactList />
       </div>
     );

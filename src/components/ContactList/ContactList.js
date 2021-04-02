@@ -22,9 +22,24 @@ const ContactList = ({ contacts, deleteContact }) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  contacts: state.items.contacts,
-});
+// рендер списка
+const renderContacts = (contacts, filter) => {
+  const lowerName = filter.toLowerCase();
+  return contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(lowerName)
+  );
+};
+const mapStateToProps = (state) => {
+  const { filter, contacts } = state.items;
+  const visibleContacts = renderContacts(contacts, filter);
+  return {
+    contacts: visibleContacts,
+  };
+};
+
+// const mapStateToProps = ({ items: { contacts, filter } }) => ({
+//   items: renderContacts(contacts, filter),
+// });
 
 const mapDispatchToProps = (dispatch) => ({
   deleteContact: (id) => dispatch(phonebookActions.deleteContact(id)),
