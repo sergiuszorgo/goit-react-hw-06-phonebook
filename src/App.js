@@ -27,11 +27,11 @@ class App extends Component {
   //   }
   // }
   // проверка на совпадение
-  checkContact = (name) => {
-    return this.state.contacts.some(
-      (contact) => contact.name.toLowerCase() === name.toLowerCase()
-    );
-  };
+  // checkContact = (name) => {
+  //   return this.state.contacts.some(
+  //     (contact) => contact.name.toLowerCase() === name.toLowerCase()
+  //   );
+  // };
 
   // добавление контакта !~
   // addContact = ({ name, number }) => {
@@ -77,7 +77,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Phonebook</h1>
-        <ContactForm addContact={this.addContact} />
+        <ContactForm />
+        {/* <ContactForm addContact={this.addContact} /> */}
         <SearchForm />
         {/* <SearchForm filter={this.state.filter} inputForm={this.changeFilter} /> */}
         <ContactList />
