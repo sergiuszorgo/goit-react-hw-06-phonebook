@@ -26,8 +26,13 @@ class ContactForm extends Component {
   // отправка контакта
   pushContact = (e) => {
     e.preventDefault();
-    this.props.addContact(this.state);
-    this.resetForm();
+
+    if (this.state.name !== "") {
+      this.props.addContact(this.state);
+      this.resetForm();
+      return;
+    }
+    alert("Please write a name");
   };
 
   render() {

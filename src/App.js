@@ -1,15 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import "./App.css";
 // import { nanoid } from "nanoid";
 import ContactList from "./components/ContactList/ContactList";
 import ContactForm from "./components/ContactForm/ContactForm";
 import SearchForm from "./components/SearchForm/SearchForm";
 
-class App extends Component {
-  state = {
-    // contacts: [],
-    // filter: "",
-  };
+const App = ({ contacts }) => {
+  // state = {
+  // contacts: [],
+  // filter: "",
+  // };
   // построение из localStorage
   // componentDidMount() {
   //   const contacts = localStorage.getItem("contacts");
@@ -72,19 +73,21 @@ class App extends Component {
   //   this.setState({ filter: e.currentTarget.value });
   // };
 
-  render() {
-    // const rendered = this.renderContacts();
-    return (
-      <div className="App">
-        <h1>Phonebook</h1>
-        <ContactForm />
-        {/* <ContactForm addContact={this.addContact} /> */}
-        <SearchForm />
-        {/* <SearchForm filter={this.state.filter} inputForm={this.changeFilter} /> */}
-        <ContactList />
-      </div>
-    );
-  }
-}
+  // const rendered = this.renderContacts();
+  return (
+    <div className="App">
+      <h1>Phonebook</h1>
+      <ContactForm />
+      {/* <ContactForm addContact={this.addContact} /> */}
+      {contacts.length > 1 && <SearchForm />}
+      {/* <SearchForm filter={this.state.filter} inputForm={this.changeFilter} /> */}
+      <ContactList />
+    </div>
+  );
+};
 
-export default App;
+const mapStateToProps = (state) => ({
+  contacts: state.items.contacts,
+});
+
+export default connect(mapStateToProps)(App);
