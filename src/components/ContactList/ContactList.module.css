@@ -13,7 +13,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  /* background-color: #f1f3f4; */
   border: 1px solid lightslategray;
   border-radius: 3px;
 }
@@ -27,15 +26,18 @@
 }
 
 .contBtn {
-  width: 25px;
-  height: 25px;
-  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  padding: 0px;
   background-color: lightslategray;
   color: white;
   border: none;
   border-radius: 50%;
   font-weight: bold;
-  box-shadow: 1px 2px 2px 1px rgb(0 0 0 / 0.5);
+  /* box-shadow: 1px 2px 2px 1px rgb(0 0 0 / 0.5); */
 }
 
 .contBtn:hover,

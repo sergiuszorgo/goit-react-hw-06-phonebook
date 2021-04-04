@@ -13,9 +13,11 @@ const ContactList = ({ contacts, deleteContact }) => (
           <p className={s.ContactListName}>
             {name}: {number}
           </p>
-          <button className={s.contBtn} onClick={() => deleteContact(id)}>
-            —
-          </button>
+          <div>
+            <button className={s.contBtn} onClick={() => deleteContact(id)}>
+              <span class="material-icons md-light">close</span>
+            </button>
+          </div>
         </li>
       ))}
     </ul>
