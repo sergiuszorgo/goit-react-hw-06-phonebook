@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
-import phonebookActions from "../../redux/phonebook-actions";
+import phonebookActions from "../../redux/phonebook/phonebook-actions";
 import s from "./ContactForm.module.css";
 
 class ContactForm extends Component {
@@ -24,15 +24,27 @@ class ContactForm extends Component {
   };
 
   // отправка контакта
+
+  // отправка контакта
+  checkDublicat = (name) => {
+    return this.props.contacts.some(
+      (contact) => contact.name.toLowerCase() === name.toLowerCase()
+    );
+  };
   pushContact = (e) => {
     e.preventDefault();
-
-    if (this.state.name !== "") {
-      this.props.addContact(this.state);
+    const { name, number } = this.state;
+    const { addContact } = this.props;
+    if (this.checkDublicat(this.state.name)) {
+      alert(`${name} already present in contacts`);
+      return;
+    }
+    if (name && number) {
+      addContact(this.state);
       this.resetForm();
       return;
     }
-    alert("Please write a name");
+    alert("Please enter name and phone");
   };
 
   render() {
@@ -66,13 +78,15 @@ class ContactForm extends Component {
     );
   }
 }
-
+const mapStateToProps = (state) => ({
+  contacts: state.items.contacts,
+});
 const mapDispatchToProps = (dispatch) => ({
   addContact: ({ name, number }) =>
     dispatch(phonebookActions.addContact({ name, number })),
 });
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
 
 ContactForm.propTypes = {
   addContact: propTypes.func,
